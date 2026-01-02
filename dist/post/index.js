@@ -11,14 +11,8 @@ const core = __nccwpck_require__(37484)
 const github = __nccwpck_require__(93228)
 
 const bazeliskVersion = core.getInput('bazelisk-version')
-const bazelVersionFileInput = core.getInput('bazel-version-file')
 const cacheVersion = core.getInput('cache-version')
 const moduleRoot = core.getInput('module-root')
-
-if (bazelVersionFileInput && fs.existsSync(bazelVersionFileInput)) {
-  const bazelVersion = fs.readFileSync(bazelVersionFileInput, 'utf8').trim()
-  core.exportVariable('USE_BAZEL_VERSION', bazelVersion)
-}
 
 const homeDir = os.homedir()
 const arch = os.arch()
@@ -148,7 +142,7 @@ module.exports = {
   baseCacheKey,
   bazeliskCache: {
     enabled: core.getBooleanInput('bazelisk-cache'),
-    files: [bazelVersionFileInput || `${moduleRoot}/.bazelversion`],
+    files: [`${moduleRoot}/.bazelversion`],
     name: 'bazelisk',
     paths: [core.toPosixPath(`${userCacheDir}/bazelisk`)]
   },

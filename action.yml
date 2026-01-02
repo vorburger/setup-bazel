@@ -9,10 +9,6 @@ inputs:
   bazelisk-version:
     description: The Bazelisk version to download and use if necessary
     default: ""
-  bazel-version-file:
-    description: The bazel version file to use, ie. `.bazelversion`.
-    required: false
-    default: ""
   bazelrc:
     description: Extra contents to write to user .bazelrc
     required: false
